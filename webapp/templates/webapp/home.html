@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %} Meeting Planner | Home {% endblock %}
+{% block content %}
+    <h1>
+        Welcome to my meeting planning application built with <em>Python Django Framework</em>
+    </h1>
+
+    <p>
+        <h2>Meetings:</h2>
+        <ul>
+            {% for meeting in meetings %}
+                <li>
+                    <a href="{% url 'meeting_detail' meeting.id %}">{{meeting.title}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </p>
+
+    <p>
+        <a href="{% url 'room_list' %}"> Visit Meeting rooms</a> |
+        <a href="{% url 'schedule_meeting' %}"> Schedule a New Meeting</a>
+    </p>
+{% endblock %}

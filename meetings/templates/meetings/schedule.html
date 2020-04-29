@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %} Meeting Planner | Schedule Meeting {% endblock %}
+{% block content %}
+
+    <h2>Schedule a New Meeting</h2>
+
+    <div class="">
+
+        <form method="post">
+           <table>
+                {{form}}
+           </table>
+            {% csrf_token %}
+            <button type="submit">Schedule Meeting</button>
+        </form>
+
+    </div>
+
+    <div>
+        <a href="{% url 'home' %}">Home</a>
+    </div>
+
+{% endblock %}

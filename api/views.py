@@ -6,7 +6,7 @@ import api.serializers as serializer
 
 
 # Create your views here.
-class MeetingAPIView(generics.ListAPIView):
+class MeetingAPIView(generics.ListCreateAPIView):
     queryset = Meeting.objects.all()
     serializer_class = serializer.MeetingSerializer
 
@@ -16,11 +16,11 @@ class RoomAPIView(generics.ListAPIView):
     serializer_class = serializer.RoomSerializer
 
 
-class RetrieveRoomAPIView(generics.RetrieveAPIView):
+class RetrieveRoomAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Room.objects.all()
     serializer_class = serializer.RoomSerializer
 
 
-class RetrieveMeetingAPIView(generics.RetrieveAPIView):
+class RetrieveMeetingAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Meeting.objects.all()
     serializer_class = serializer.MeetingSerializer

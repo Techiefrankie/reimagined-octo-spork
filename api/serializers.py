@@ -6,7 +6,7 @@ from meetings.models import Meeting
 class MeetingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Meeting
-        fields = ('id', 'title', 'date', 'start_time', 'duration', 'room')
+        fields = ('id', 'title', 'date', 'start_time', 'duration', 'room', 'created_by')
 
 
 class RoomSerializer(serializers.ModelSerializer):

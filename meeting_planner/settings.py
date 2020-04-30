@@ -39,8 +39,15 @@ INSTALLED_APPS = [
     # Third Party Apps
     'rest_framework',
     'corsheaders',
-    'rest_framework.authtoken',
+    'rest_framework.authtoken', # package for token management
+    'rest_auth', # rest package for login, logout, reset password endpoints
+    # beginning of django-allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'rest_auth',
+    'rest_auth.registration',
+    # end of django-allauth
 
     # Local Apps
     'webapp.apps.WebappConfig',
@@ -142,3 +149,8 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
     'http://localhost:8000',
 )
+
+
+# django-allauth configs
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SITE_ID = 1

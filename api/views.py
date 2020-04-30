@@ -1,8 +1,8 @@
-from django.shortcuts import get_object_or_404
-from rest_framework import generics
+from rest_framework import generics, permissions
 from rooms.models import Room
 from meetings.models import Meeting
 import api.serializers as serializer
+from api.permissions import IsCreatorOrReadOnly
 
 
 # Create your views here.
@@ -22,5 +22,6 @@ class RetrieveRoomAPIView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class RetrieveMeetingAPIView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsCreatorOrReadOnly, )
     queryset = Meeting.objects.all()
     serializer_class = serializer.MeetingSerializer

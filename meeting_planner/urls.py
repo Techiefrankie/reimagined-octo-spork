@@ -24,5 +24,6 @@ urlpatterns = [
     path('meetings/', include('meetings.urls')),
     path('rooms/', include('rooms.urls')),
     path('api/v1/', include('api.urls')),
-    path('api-auth/', include('rest_framework.urls'))
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/v1/rest-auth/', include('rest_auth.urls'))
 ]

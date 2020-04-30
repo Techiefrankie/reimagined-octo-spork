@@ -24,11 +24,11 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = serializer.UserSerializer
 
 
-class GenericListView(generics.ListCreateAPIView):
+class RoomListView(generics.ListCreateAPIView):
     queryset = Room.objects.all()
     serializer_class = serializer.RoomSerializer
 
 
-class GenericUnsafeView(generics.RetrieveUpdateDestroyAPIView):
+class RoomRUDView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Room.objects.all()
     serializer_class = serializer.RoomSerializer

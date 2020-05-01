@@ -15,7 +15,32 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import permissions
+
 from webapp.views import home
+from rest_framework.schemas import get_schema_view
+from drf_yasg.views import get_schema_view as drf
+from drf_yasg import openapi
+from rest_framework.documentation import include_docs_urls
+
+# for building documentation
+TITLE = "Meeting Planner API"
+DESCRIPTION = "A simple Django web app for scheduling meetings. Has both Django MTV and REST API"
+
+drf_schema_view = drf(
+    openapi.Info(
+        title=TITLE,
+        default_version='v1',
+        description=DESCRIPTION,
+        terms_of_service="https://www.meety.com/policies/terms/",
+        contact=openapi.Contact(email="techiefrankie@gmail.com"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
+
+schema_view = get_schema_view(title=TITLE)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +52,9 @@ urlpatterns = [
     path('api/v1/rest-auth/', include('rest_auth.urls')),
     path('api/v1/rest-auth/registration/',
          include('rest_auth.registration.urls')),
+    path('schema/', schema_view),
+    path('docs/', include_docs_urls(title=TITLE, description=DESCRIPTION)),
+    path('swagger-json', drf_schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    path('swagger/', drf_schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', drf_schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]

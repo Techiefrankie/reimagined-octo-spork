@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     # Third Party Apps
+    'drf_yasg',  # for api documentation with drf_yasg
     'rest_framework',
     'corsheaders',
     'rest_framework.authtoken',  # package for token management
@@ -136,6 +137,7 @@ STATIC_URL = '/static/'
 
 # Django REST Framework
 REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
@@ -154,3 +156,15 @@ CORS_ORIGIN_WHITELIST = (
 # django-allauth configs
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SITE_ID = 1
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'basic': {
+            'type': 'basic'
+        }
+    },
+}
+
+REDOC_SETTINGS = {
+   'LAZY_RENDERING': False,
+}
